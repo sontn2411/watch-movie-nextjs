@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ItemData } from '@/types/movies'
 import { SLUG_TITLES } from '@/services/movieService'
 
@@ -20,9 +21,20 @@ interface MobileHeaderProps {
 
 const MobileHeader = ({ categories, nations }: MobileHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
   const [activeSection, setActiveSection] = useState<
     'danh-sach' | 'category' | 'nation'
   >('danh-sach')
+
+  useEffect(() => {
+    if (pathname.startsWith('/the-loai')) {
+      setActiveSection('category')
+    } else if (pathname.startsWith('/quoc-gia')) {
+      setActiveSection('nation')
+    } else {
+      setActiveSection('danh-sach')
+    }
+  }, [pathname])
 
   return (
     <>
@@ -136,16 +148,30 @@ const MobileHeader = ({ categories, nations }: MobileHeaderProps) => {
                 : activeSection === 'category'
                   ? categories
                   : nations
-              ).map((item) => (
-                <Link
-                  key={item._id}
-                  href={`/${activeSection === 'danh-sach' ? 'danh-sach' : activeSection === 'category' ? 'the-loai' : 'quoc-gia'}/${item.slug}`}
-                  className='text-sm text-white/65 hover:text-white px-3 py-2.5 rounded-xl transition-all duration-150 hover:bg-white/8 cursor-pointer truncate border border-white/6'
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              ).map((item) => {
+                const basePathSnippet =
+                  activeSection === 'danh-sach'
+                    ? 'danh-sach'
+                    : activeSection === 'category'
+                      ? 'the-loai'
+                      : 'quoc-gia'
+                const href = `/${basePathSnippet}/${item.slug}`
+                const isActive = pathname === href
+                return (
+                  <Link
+                    key={item._id}
+                    href={href}
+                    className={`text-sm px-3 py-2.5 rounded-xl transition-all duration-150 cursor-pointer truncate border ${
+                      isActive
+                        ? 'text-primary bg-primary/10 border-primary/20 font-semibold'
+                        : 'text-white/65 hover:text-white hover:bg-white/8 border-white/6'
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </div>

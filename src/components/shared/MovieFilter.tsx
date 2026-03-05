@@ -9,6 +9,7 @@ interface MovieFilterProps {
   nations: ItemData[]
   slug: string
   hideCategory?: boolean
+  hideCountry?: boolean
 }
 
 const currentYear = new Date().getFullYear()
@@ -19,6 +20,7 @@ export default function MovieFilter({
   nations,
   slug,
   hideCategory = false,
+  hideCountry = false,
 }: MovieFilterProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -44,7 +46,7 @@ export default function MovieFilter({
       params.delete('page')
 
       startTransition(() => {
-        router.push(`/danh-sach/${slug}?${params.toString()}`)
+        router.push(`/${slug}?${params.toString()}`)
       })
     },
     [searchParams, slug, router],
@@ -52,7 +54,7 @@ export default function MovieFilter({
 
   const clearAll = useCallback(() => {
     startTransition(() => {
-      router.push(`/danh-sach/${slug}`)
+      router.push(`/${slug}`)
     })
     setIsOpen(false)
   }, [slug, router])
@@ -75,18 +77,21 @@ export default function MovieFilter({
         </>
       )}
 
-      <FilterRow label='Quốc gia'>
-        {nations.map((item) => (
-          <Chip
-            key={item._id}
-            label={item.name}
-            active={item.slug === activeCountry}
-            onClick={() => updateFilter('country', item.slug)}
-          />
-        ))}
-      </FilterRow>
-
-      <div className='h-px bg-white/6' />
+      {!hideCountry && (
+        <>
+          <FilterRow label='Quốc gia'>
+            {nations.map((item) => (
+              <Chip
+                key={item._id}
+                label={item.name}
+                active={item.slug === activeCountry}
+                onClick={() => updateFilter('country', item.slug)}
+              />
+            ))}
+          </FilterRow>
+          <div className='h-px bg-white/6' />
+        </>
+      )}
 
       <FilterRow label='Năm'>
         {YEARS.map((year) => (

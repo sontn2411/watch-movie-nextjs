@@ -7,8 +7,10 @@ import {
   SLUG_TITLES,
 } from '@/services/movieService'
 
+import { sleep } from '@/utils/delay'
+
 export default async function Home() {
-  const homeData = await fetchHomeData()
+  const [homeData] = await Promise.all([fetchHomeData(), sleep(2000)])
 
   // Take top movies for the carousel
   const carouselMovies = homeData.items

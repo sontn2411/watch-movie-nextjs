@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import {
   fetchListCategory,
   fetchListNation,
-  fetchMovieByCategory,
+  fetchMovieByNation,
 } from '@/services/movieService'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -18,22 +18,22 @@ export async function generateMetadata({
   const { slug } = await params
 
   try {
-    const res = await fetchMovieByCategory(slug, 1)
+    const res = await fetchMovieByNation(slug, 1)
 
     if (!res?.status) {
-      return { title: 'Thể loại phim | Watch Mov' }
+      return { title: 'Phim theo quốc gia | Watch Mov' }
     }
 
-    const title = res.data?.titlePage || 'Thể loại phim'
+    const title = res.data?.titlePage || 'Phim theo quốc gia'
     return { title: `${title} | Watch Mov` }
   } catch (error) {
-    return { title: 'Thể loại phim | Watch Mov' }
+    return { title: 'Phim theo quốc gia | Watch Mov' }
   }
 }
 
 import { sleep } from '@/utils/delay'
 
-export default async function TheLoaiPage({
+export default async function QuocGiaPage({
   params,
   searchParams,
 }: {
@@ -53,7 +53,7 @@ export default async function TheLoaiPage({
   try {
     const [[res, listCategory, listNation]] = await Promise.all([
       Promise.all([
-        fetchMovieByCategory(slug, 24, currentPage, country, year),
+        fetchMovieByNation(slug, 24, currentPage, category, year),
         fetchListCategory(),
         fetchListNation(),
       ]),
@@ -70,7 +70,7 @@ export default async function TheLoaiPage({
     const { APP_DOMAIN_CDN_IMAGE } = res.data
     const { totalItems, totalItemsPerPage } = res.data.params.pagination
     const totalPages = Math.ceil(totalItems / totalItemsPerPage)
-    const title = res.data?.titlePage || 'Thể loại phim'
+    const title = res.data?.titlePage || 'Phim theo quốc gia'
 
     return (
       <div className='relative min-h-[calc(100vh-80px)] pt-[100px] px-4 md:px-6 max-w-7xl mx-auto pb-16 '>
@@ -93,8 +93,8 @@ export default async function TheLoaiPage({
           <MovieFilter
             categories={categories}
             nations={nations}
-            slug={`the-loai/${slug}`}
-            hideCategory={true}
+            slug={`quoc-gia/${slug}`}
+            hideCountry={true}
           />
         </Suspense>
 
@@ -112,7 +112,7 @@ export default async function TheLoaiPage({
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
-              slug={`the-loai/${slug}`}
+              slug={`quoc-gia/${slug}`}
             />
           </Suspense>
         )}

@@ -38,6 +38,8 @@ export async function generateMetadata({
   return { title }
 }
 
+import { sleep } from '@/utils/delay'
+
 export default async function DanhSachPage({
   params,
   searchParams,
@@ -59,10 +61,13 @@ export default async function DanhSachPage({
 
   const currentPage = Math.max(1, Number(page) || 1)
 
-  const [res, listCategory, listNation] = await Promise.all([
-    fetchMoviesBySlug(slug, 24, currentPage, category, country, year),
-    fetchListCategory(),
-    fetchListNation(),
+  const [[res, listCategory, listNation]] = await Promise.all([
+    Promise.all([
+      fetchMoviesBySlug(slug, 24, currentPage, category, country, year),
+      fetchListCategory(),
+      fetchListNation(),
+    ]),
+    sleep(2000),
   ])
 
   const categories = listCategory?.data?.items ?? []
@@ -106,7 +111,11 @@ export default async function DanhSachPage({
 
       {/* Filter */}
       <Suspense fallback={null}>
-        <MovieFilter categories={categories} nations={nations} slug={slug} />
+        <MovieFilter
+          categories={categories}
+          nations={nations}
+          slug={`danh-sach/${slug}`}
+        />
       </Suspense>
 
       {/* Results */}

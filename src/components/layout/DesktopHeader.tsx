@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ItemData } from '@/types/movies'
 import { SLUG_TITLES } from '@/services/movieService'
 
@@ -34,7 +35,10 @@ const ChevronIcon = ({ open }: { open: boolean }) => (
 
 const DropdownMenu = ({ label, items, basePath }: DropdownMenuProps) => {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
   const ref = useRef<HTMLDivElement>(null)
+
+  const isActive = pathname.startsWith(`/${basePath}`)
 
   return (
     <div
@@ -46,7 +50,7 @@ const DropdownMenu = ({ label, items, basePath }: DropdownMenuProps) => {
       {/* Trigger */}
       <button
         className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
-          open
+          open || isActive
             ? 'text-white bg-white/10 border border-white/20'
             : 'text-white/70 hover:text-white border border-transparent hover:border-white/15 hover:bg-white/8'
         }`}
@@ -83,15 +87,23 @@ const DropdownMenu = ({ label, items, basePath }: DropdownMenuProps) => {
             <div
               className={`grid gap-0.5 ${label === 'Thể loại' ? 'grid-cols-4' : 'grid-cols-3'}`}
             >
-              {items.map((item) => (
-                <Link
-                  key={item._id}
-                  href={`/${basePath}/${item.slug}`}
-                  className='text-[13px] text-white/65 hover:text-white hover:bg-white/10 px-2.5 py-2 rounded-lg transition-all duration-150 truncate cursor-pointer'
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {items.map((item) => {
+                const href = `/${basePath}/${item.slug}`
+                const isItemActive = pathname === href
+                return (
+                  <Link
+                    key={item._id}
+                    href={href}
+                    className={`text-[13px] px-2.5 py-2 rounded-lg transition-all duration-150 truncate cursor-pointer ${
+                      isItemActive
+                        ? 'text-primary bg-primary/10 font-semibold'
+                        : 'text-white/65 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              })}
             </div>
           </div>
 

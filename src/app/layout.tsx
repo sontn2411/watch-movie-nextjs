@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang='vi'>
       <body className={`${geistSans.variable} antialiased pb-20`}>
         <Header />
-        <main className='min-h-screen'>{children}</main>
+        <main className='min-h-screen page-fade-in'>{children}</main>
       </body>
     </html>
   )

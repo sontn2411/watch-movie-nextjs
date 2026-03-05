@@ -97,10 +97,23 @@ const fetchMovieByCategory = (
   )
 }
 
+const fetchMovieByNation = (
+  slug: string,
+  limit = 24,
+  page = 1,
+  category = '',
+  year = '',
+) => {
+  return fetchJson<ResponseDataFilm>(
+    `${DOMAIN}/v1/api/quoc-gia/${slug}?limit=${limit}&page=${page}&category=${category}&year=${year}`,
+  )
+}
+
 export {
   fetchHomeData,
   fetchMoviesBySlug,
   fetchListCategory,
   fetchListNation,
   fetchMovieByCategory,
+  fetchMovieByNation,
 }

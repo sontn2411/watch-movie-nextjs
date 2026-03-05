@@ -1,76 +1,46 @@
+'use client'
+
 import React from 'react'
 
 export default function Loading() {
-  // Mock 4 movie sections
-  const mockSections = Array.from({ length: 4 })
-  // Mock 5-6 cards per section
-  const mockCards = Array.from({ length: 6 })
-
   return (
-    <div className='flex flex-col w-full min-h-screen pb-12 bg-neutral-950'>
-      {/* --- HERO CAROUSEL SKELETON --- */}
-      <section className='relative w-full h-screen bg-neutral-900 animate-pulse overflow-hidden'>
-        {/* Background gradient overlay */}
-        <div className='absolute inset-0 z-10 pointer-events-none'>
-          <div className='absolute inset-0 bg-linear-to-r from-black/90 via-black/50 to-transparent' />
+    <div className='fixed inset-0 z-[100] flex items-center justify-center bg-[#06060c] animate-in fade-in duration-500'>
+      {/* Background Orbs */}
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen opacity-50' />
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/4 -translate-y-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] mix-blend-screen opacity-50' />
 
-          {/* Dummy Movie Info Overlay */}
-          <div className='absolute bottom-[35%] left-0 px-8 md:px-16 pointer-events-auto max-w-2xl w-full'>
-            {/* Title Skeleton */}
-            <div className='h-14 md:h-20 bg-neutral-800 rounded-lg w-3/4 mb-4' />
-            {/* Subtitle Skeleton */}
-            <div className='h-6 bg-neutral-800 rounded-md w-1/2 mb-2' />
-            {/* Year Skeleton */}
-            <div className='h-4 bg-neutral-800 rounded-md w-16 mb-8' />
-
-            {/* Play Button Skeleton */}
-            <div className='h-12 w-40 bg-neutral-200 rounded-lg' />
+      <div className='relative flex flex-col items-center gap-8'>
+        {/* Logo Section */}
+        <div className='flex flex-col items-center'>
+          <div className='text-4xl md:text-5xl font-bold tracking-tighter animate-pulse-slow'>
+            <span className='text-primary'>WATCH</span>
+            <span className='text-white'>MOV</span>
           </div>
+          <div
+            className='mt-2 h-0.5 w-12 bg-primary rounded-full animate-shimmer'
+            style={{
+              backgroundImage:
+                'linear-gradient(90deg, transparent, white, transparent)',
+              backgroundSize: '200% 100%',
+            }}
+          />
         </div>
 
-        {/* Dummy Thumbnail Indicator */}
-        <div className='absolute -bottom-1 right-0 left-0 z-20 w-full px-4 py-4 overflow-hidden'>
-          <div className='flex items-center gap-3'>
-            {/* 4 Thumbnails */}
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className='shrink-0 w-48 h-64 bg-neutral-800 rounded-lg border-2 border-transparent'
-              />
-            ))}
-          </div>
+        {/* Loader Spinner */}
+        <div className='relative w-16 h-16'>
+          {/* Inner ring */}
+          <div className='absolute inset-0 rounded-full border-2 border-white/5' />
+          {/* Animated segment */}
+          <div className='absolute inset-0 rounded-full border-t-2 border-r-2 border-primary animate-[spin_2s_linear_infinite]' />
+
+          {/* Subtle Glow */}
+          <div className='absolute inset-0 rounded-full bg-primary/10 blur-xl animate-pulse' />
         </div>
-      </section>
 
-      {/* --- MOVIE SECTIONS SKELETON --- */}
-      <div className='flex flex-col gap-10 mt-8'>
-        {mockSections.map((_, sectionIndex) => (
-          <section
-            key={sectionIndex}
-            className='px-4 md:px-8 lg:px-16 animate-pulse'
-          >
-            {/* Section Header */}
-            <div className='flex items-center justify-between mb-4'>
-              {/* Title Skeleton */}
-              <div className='h-8 bg-neutral-800 rounded-lg w-48' />
-              {/* "Xem tat ca" link Skeleton */}
-              <div className='h-4 bg-neutral-800 rounded-md w-24' />
-            </div>
-
-            {/* Horizontal Cards */}
-            <div className='flex gap-5 overflow-hidden pb-4'>
-              {mockCards.map((__, cardIndex) => (
-                <div key={cardIndex} className='shrink-0 w-48'>
-                  {/* Poster Skeleton */}
-                  <div className='w-full h-64 bg-neutral-800 rounded-lg mb-2' />
-                  {/* Info Skeletons */}
-                  <div className='h-4 bg-neutral-800 rounded-md w-3/4 mb-1' />
-                  <div className='h-3 bg-neutral-800 rounded-md w-1/2' />
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
+        {/* Text */}
+        <p className='text-white/40 text-sm font-medium tracking-[0.2em] uppercase animate-pulse'>
+          Đang tải trải nghiệm...
+        </p>
       </div>
     </div>
   )
