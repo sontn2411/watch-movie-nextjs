@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='vi'>
-      <body className={`${geistSans.variable} antialiased pb-20`}>
+      <body className={`${geistSans.variable} antialiased `}>
         <Header />
         <main className='min-h-screen'>
           <PageTransition>{children}</PageTransition>

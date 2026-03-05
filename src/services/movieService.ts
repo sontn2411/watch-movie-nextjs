@@ -1,5 +1,11 @@
 import { MovieUpdateResponse } from '@/types'
-import { ResponseDataFilm, ResponseDataListCategory } from '@/types/movies'
+import {
+  ResponseDataFilm,
+  ResponseDataFilmDetail,
+  ResponseDataFilmImage,
+  ResponseDataFilmPeoples,
+  ResponseDataListCategory,
+} from '@/types/movies'
 
 const DOMAIN = 'https://ophim1.com'
 
@@ -109,6 +115,22 @@ const fetchMovieByNation = (
   )
 }
 
+const fetchMovieDetailBySlug = (slug: string) => {
+  return fetchJson<ResponseDataFilmDetail>(`${DOMAIN}/v1/api/phim/${slug}`)
+}
+
+const fetchMovieDetailImage = (slug: string) => {
+  return fetchJson<ResponseDataFilmImage>(
+    `${DOMAIN}/v1/api/phim/${slug}/images`,
+  )
+}
+
+const fetchMovieDetailPeople = (slug: string) => {
+  return fetchJson<ResponseDataFilmPeoples>(
+    `${DOMAIN}/v1/api/phim/${slug}/peoples`,
+  )
+}
+
 export {
   fetchHomeData,
   fetchMoviesBySlug,
@@ -116,4 +138,7 @@ export {
   fetchListNation,
   fetchMovieByCategory,
   fetchMovieByNation,
+  fetchMovieDetailBySlug,
+  fetchMovieDetailImage,
+  fetchMovieDetailPeople,
 }

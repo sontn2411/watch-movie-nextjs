@@ -132,8 +132,21 @@ export interface ResponseDataFilmPeoples {
       backdrop: ImageSizes
       poster: ImageSizesPoster
     }
-    images: imageItem[]
+    peoples: PeopleItem[]
   }
+}
+
+interface PeopleItem {
+  character: string
+  gender: number
+  gender_name: string
+  known_for_department: string
+  name: string
+  original_name: string
+  profile_path: string
+  tmdb_people_id: number
+  adult: boolean
+  also_known_as: string[]
 }
 
 export interface ItemData {
@@ -147,5 +160,23 @@ export interface ResponseDataListCategory {
   message: string
   data: {
     items: ItemData[]
+  }
+}
+
+export interface ResponseDataFilmImage {
+  status: boolean
+  message: string
+  data: {
+    imdb_id: string
+    ophim_id: string
+    slug: string
+    tmdb_id: number
+    tmdb_season: number
+    tmdb_type: string
+    image_sizes: {
+      backdrop: ImageSizes
+      poster: ImageSizesPoster
+    }
+    images: imageItem[]
   }
 }

@@ -9,11 +9,9 @@ interface PageTransitionProps {
 }
 
 /**
- * PageTransition wrapper that forces the Suspense boundary to re-suspend
- * whenever the pathname or search parameters change.
- * This ensures the global loading.tsx is shown on every navigation.
+ * Inner component that accesses hooks requiring Suspense.
  */
-export default function PageTransition({ children }: PageTransitionProps) {
+function InnerTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -23,6 +21,14 @@ export default function PageTransition({ children }: PageTransitionProps) {
   return (
     <Suspense key={key} fallback={<Loading />}>
       <div className='page-fade-in'>{children}</div>
+    </Suspense>
+  )
+}
+
+export default function PageTransition({ children }: PageTransitionProps) {
+  return (
+    <Suspense fallback={<Loading />}>
+      <InnerTransition>{children}</InnerTransition>
     </Suspense>
   )
 }

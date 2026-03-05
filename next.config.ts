@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: 'img.ophim10.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        pathname: '/**',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },

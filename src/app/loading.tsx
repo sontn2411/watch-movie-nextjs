@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Loading() {
   return (
-    <div className='h-screen fixed inset-0 z-100 flex items-center justify-center bg-[#06060c] animate-in fade-in duration-500'>
+    <div className='h-screen fixed inset-0 z-[100] flex items-center justify-center bg-[#06060c] animate-in fade-in duration-500'>
       {/* Background Orbs */}
       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen opacity-50' />
       <div className='absolute top-1/2 left-1/2 -translate-x-1/4 -translate-y-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] mix-blend-screen opacity-50' />
