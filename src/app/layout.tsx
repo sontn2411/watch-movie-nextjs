@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 
 import Header from '@/components/layout/Header'
+import PageTransition from '@/components/layout/PageTransition'
 
 import './globals.css'
 
@@ -26,7 +27,9 @@ export default function RootLayout({
     <html lang='vi'>
       <body className={`${geistSans.variable} antialiased pb-20`}>
         <Header />
-        <main className='min-h-screen page-fade-in'>{children}</main>
+        <main className='min-h-screen'>
+          <PageTransition>{children}</PageTransition>
+        </main>
       </body>
     </html>
   )

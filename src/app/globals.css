@@ -67,13 +67,13 @@ body {
 }
 
 .page-fade-in {
-  /* Increased from 0.6s to 1.2s */
-  animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  /* Increased from 1.2s to 1.8s for an even softer entrance */
+  animation: fadeIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .animate-pulse-slow {
-  /* Increased from 3s to 5s */
-  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* Increased from 5s to 7s */
+  animation: pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes shimmer {
@@ -86,6 +86,6 @@ body {
 }
 
 .animate-shimmer {
-  /* Increased from 2s to 4s */
-  animation: shimmer 4s linear infinite;
+  /* Increased from 4s to 6s */
+  animation: shimmer 6s linear infinite;
 }
