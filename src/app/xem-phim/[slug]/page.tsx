@@ -79,7 +79,7 @@ export default async function WatchPage({
 
         {/* Right Side: Sidebar (Episode List & Details) */}
         <div className='w-full lg:w-[400px] shrink-0 h-full flex flex-col bg-[#05050A] border-l border-white/5 shadow-2xl z-10'>
-          <div className='p-6 flex-1 overflow-y-auto no-scrollbar pb-10'>
+          <div className='p-6 flex-1  pb-10'>
             <h3 className='text-3xl font-black tracking-tight leading-[1.1] mb-8 text-white'>
               {name}
             </h3>
