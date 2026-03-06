@@ -9,6 +9,7 @@ import 'swiper/css'
 
 import { FilmItem } from '@/types/movies'
 import MovieCard from './MovieCard'
+import Icon from '@/components/ui/Icon'
 
 const CARD_WIDTH = 192 // w-48 = 192px
 const CARD_GAP = 20 // spaceBetween
@@ -34,35 +35,9 @@ const NavButton = ({
     }`}
   >
     {direction === 'prev' ? (
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        viewBox='0 0 24 24'
-        fill='none'
-        stroke='currentColor'
-        strokeWidth={2.5}
-        className='w-4 h-4'
-      >
-        <path
-          strokeLinecap='round'
-          strokeLinejoin='round'
-          d='M15.75 19.5 8.25 12l7.5-7.5'
-        />
-      </svg>
+      <Icon name='chevron-left' className='w-4 h-4' strokeWidth={2.5} />
     ) : (
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        viewBox='0 0 24 24'
-        fill='none'
-        stroke='currentColor'
-        strokeWidth={2.5}
-        className='w-4 h-4'
-      >
-        <path
-          strokeLinecap='round'
-          strokeLinejoin='round'
-          d='m8.25 4.5 7.5 7.5-7.5 7.5'
-        />
-      </svg>
+      <Icon name='chevron-right' className='w-4 h-4' strokeWidth={2.5} />
     )}
   </button>
 )

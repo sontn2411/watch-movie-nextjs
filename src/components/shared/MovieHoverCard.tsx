@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Icon from '@/components/ui/Icon'
 
 import { FilmItem } from '@/types/movies'
 
@@ -132,21 +133,7 @@ const MovieHoverCard = ({
           <div className='flex items-center gap-2 mb-2.5 text-[11px] text-white/50'>
             {time && (
               <>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={1.8}
-                  className='w-3 h-3 shrink-0'
-                >
-                  <circle cx='12' cy='12' r='10' />
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M12 6v6l3.5 3.5'
-                  />
-                </svg>
+                <Icon name='clock' className='w-3 h-3 shrink-0' />
                 <span>{time}</span>
                 <span className='text-white/25'>·</span>
               </>
@@ -175,38 +162,14 @@ const MovieHoverCard = ({
           <div className='flex items-center gap-2'>
             {/* Play Button - full width with label */}
             <button className='flex-1 h-9 rounded-full bg-white flex items-center justify-center gap-1.5 hover:bg-gray-200 transition-colors'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 24 24'
-                fill='black'
-                className='w-4 h-4 ml-0.5 shrink-0'
-              >
-                <path
-                  fillRule='evenodd'
-                  d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z'
-                  clipRule='evenodd'
-                />
-              </svg>
+              <Icon name='play' className='w-4 h-4 ml-0.5 shrink-0' />
               <span className='text-[13px] font-semibold text-black'>
                 Xem ngay
               </span>
             </button>
             {/* Add Button - fixed size */}
             <button className='w-9 h-9 rounded-full bg-white/10 border border-white/15 flex items-center justify-center hover:bg-white/20 transition-colors shrink-0'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={2}
-                stroke='white'
-                className='w-4 h-4'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M12 4.5v15m7.5-7.5h-15'
-                />
-              </svg>
+              <Icon name='plus' className='w-4 h-4' />
             </button>
           </div>
         </div>

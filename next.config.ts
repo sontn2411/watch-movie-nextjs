@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         hostname: 'image.tmdb.org',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        pathname: '/**',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },

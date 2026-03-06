@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useState, useTransition } from 'react'
 import { ItemData } from '@/types/movies'
+import Icon from '@/components/ui/Icon'
 
 interface MovieFilterProps {
   categories: ItemData[]
@@ -119,21 +120,7 @@ export default function MovieFilter({
                 : 'bg-white/5 border-white/10 text-white/90 hover:bg-white/10'
             }`}
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='16'
-              height='16'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            >
-              <path d='M3 6h18' />
-              <path d='M7 12h10' />
-              <path d='M10 18h4' />
-            </svg>
+            <Icon name='filter' width={16} height={16} />
             Bộ lọc{' '}
             {hasFilters && (
               <span className='w-2 h-2 rounded-full bg-primary ml-1' />

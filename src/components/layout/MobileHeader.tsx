@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Icon from '@/components/ui/Icon'
 import { ItemData } from '@/types/movies'
 import { SLUG_TITLES } from '@/services/movieService'
 
@@ -54,19 +55,11 @@ const MobileHeader = ({ categories, nations }: MobileHeaderProps) => {
           <div className='flex items-center gap-2'>
             {/* Search icon */}
             <button className='w-8 h-8 rounded-full border border-white/15 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-all duration-200 bg-white/6'>
-              <svg
+              <Icon
+                name='search'
                 className='w-4 h-4 text-white/70'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-                />
-              </svg>
+                strokeWidth={2}
+              />
             </button>
 
             {/* Menu toggle */}
@@ -74,28 +67,11 @@ const MobileHeader = ({ categories, nations }: MobileHeaderProps) => {
               className={`w-8 h-8 rounded-full border border-white/15 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-all duration-200 ${isMenuOpen ? 'bg-white/12' : 'bg-white/6'}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <svg
+              <Icon
+                name={isMenuOpen ? 'close' : 'menu'}
                 className='w-4 h-4 text-white/70'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-              >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M6 18L18 6M6 6l12 12'
-                  />
-                ) : (
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M4 6h16M4 12h16M4 18h16'
-                  />
-                )}
-              </svg>
+                strokeWidth={2}
+              />
             </button>
           </div>
         </div>

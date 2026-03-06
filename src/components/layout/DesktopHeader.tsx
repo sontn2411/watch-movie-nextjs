@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ItemData } from '@/types/movies'
 import { SLUG_TITLES } from '@/services/movieService'
+import Icon from '@/components/ui/Icon'
 
 const DANH_SACH_ITEMS: ItemData[] = Object.entries(SLUG_TITLES).map(
   ([slug, name]) => ({
@@ -21,16 +22,11 @@ interface DropdownMenuProps {
 }
 
 const ChevronIcon = ({ open }: { open: boolean }) => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
+  <Icon
+    name='chevron-down'
     strokeWidth={2.5}
     className={`w-3 h-3 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' d='m19 9-7 7-7-7' />
-  </svg>
+  />
 )
 
 const DropdownMenu = ({ label, items, basePath }: DropdownMenuProps) => {
@@ -176,36 +172,20 @@ const DesktopHeader = ({ categories, nations }: DesktopHeaderProps) => {
                 placeholder='Tìm phim...'
                 className='w-48 lg:w-64 py-1.5 pl-9 pr-4 text-sm text-white placeholder-white/40 rounded-full border border-white/15 outline-none focus:w-72 focus:border-white/30 transition-all duration-300 bg-white/[0.07] backdrop-blur-md'
               />
-              <svg
+              <Icon
+                name='search'
                 className='absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/40 pointer-events-none'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-                />
-              </svg>
+                strokeWidth={2}
+              />
             </div>
 
             {/* Avatar button — glass circle */}
             <button className='w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:border-white/40 hover:bg-white/10 transition-all duration-200 cursor-pointer bg-white/[0.07] backdrop-blur-md'>
-              <svg
+              <Icon
+                name='user'
                 className='w-4 h-4 text-white/70'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-                />
-              </svg>
+                strokeWidth={2}
+              />
             </button>
           </div>
         </div>

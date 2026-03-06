@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import Icon from '@/components/ui/Icon'
 
 interface PaginationProps {
   currentPage: number
@@ -32,36 +33,6 @@ function getPageNumbers(current: number, total: number): (number | '...')[] {
   return pages
 }
 
-const ChevronLeft = () => (
-  <svg
-    className='w-4 h-4'
-    xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
-    <path d='m15 18-6-6 6-6' />
-  </svg>
-)
-
-const ChevronRight = () => (
-  <svg
-    className='w-4 h-4'
-    xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
-    <path d='m9 18 6-6-6-6' />
-  </svg>
-)
-
 const BTN_ACTIVE =
   'w-10 h-10 rounded-xl flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer'
 const BTN_DISABLED =
@@ -86,11 +57,11 @@ export default function Pagination({
       {/* Prev */}
       {currentPage > 1 ? (
         <Link href={getPageLink(currentPage - 1)} className={BTN_ACTIVE}>
-          <ChevronLeft />
+          <Icon name='chevron-left' className='w-4 h-4' />
         </Link>
       ) : (
         <div className={BTN_DISABLED}>
-          <ChevronLeft />
+          <Icon name='chevron-left' className='w-4 h-4' />
         </div>
       )}
 
@@ -121,11 +92,11 @@ export default function Pagination({
       {/* Next */}
       {currentPage < totalPages ? (
         <Link href={getPageLink(currentPage + 1)} className={BTN_ACTIVE}>
-          <ChevronRight />
+          <Icon name='chevron-right' className='w-4 h-4' />
         </Link>
       ) : (
         <div className={BTN_DISABLED}>
-          <ChevronRight />
+          <Icon name='chevron-right' className='w-4 h-4' />
         </div>
       )}
     </nav>

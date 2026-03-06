@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Icon from '@/components/ui/Icon'
 
 import { MovieUpdateItem } from '@/types'
 
@@ -30,18 +31,7 @@ const MovieInfoOverlay = ({ movie }: MovieInfoOverlayProps) => {
             href={`/phim/${movie.slug}`}
             className='flex items-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-lg'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-              fill='currentColor'
-              className='w-6 h-6'
-            >
-              <path
-                fillRule='evenodd'
-                d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z'
-                clipRule='evenodd'
-              />
-            </svg>
+            <Icon name='play' className='w-6 h-6' />
             Xem Phim
           </Link>
         </div>

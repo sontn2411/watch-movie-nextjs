@@ -131,6 +131,16 @@ const fetchMovieDetailPeople = (slug: string) => {
   )
 }
 
+const fetchSearchMovie = (
+  keyword: string,
+  page: number = 1,
+  limit: number = 24,
+) => {
+  return fetchJson<ResponseDataFilm>(
+    `${DOMAIN}/v1/api/tim-kiem?keyword=${keyword}&page=${page}&limit=${limit}`,
+  )
+}
+
 export {
   fetchHomeData,
   fetchMoviesBySlug,
@@ -141,4 +151,5 @@ export {
   fetchMovieDetailBySlug,
   fetchMovieDetailImage,
   fetchMovieDetailPeople,
+  fetchSearchMovie,
 }
