@@ -13,6 +13,7 @@ export type IconName =
   | 'close'
   | 'user'
   | 'sort'
+  | 'loader'
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName
@@ -232,6 +233,24 @@ export default function Icon({ name, className, ...props }: IconProps) {
             strokeLinecap='round'
             strokeLinejoin='round'
             d='M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m9-9l4.5 4.5m0 0l4.5-4.5M21 12v9'
+          />
+        </svg>
+      )
+    case 'loader':
+      return (
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          strokeWidth={2}
+          stroke='currentColor'
+          className={className}
+          {...props}
+        >
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            d='M12 3v3m0 12v3m9-9h-3M6 12H3m15.364-6.364l-2.121 2.121M7.757 16.243l-2.121 2.121M16.243 16.243l2.121 2.121M7.757 7.757L5.636 5.636'
           />
         </svg>
       )

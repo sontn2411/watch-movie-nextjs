@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Icon from '@/components/ui/Icon'
 import { ItemData } from '@/types/movies'
 import { SLUG_TITLES } from '@/services/movieService'
+import MobileSearch from './MobileSearch'
 
 const DANH_SACH_ITEMS: ItemData[] = Object.entries(SLUG_TITLES).map(
   ([slug, name]) => ({
@@ -35,6 +36,8 @@ const MobileHeader = ({ categories, nations }: MobileHeaderProps) => {
     } else {
       setActiveSection('danh-sach')
     }
+    // Close menu on navigation
+    setIsMenuOpen(false)
   }, [pathname])
 
   return (
@@ -53,14 +56,7 @@ const MobileHeader = ({ categories, nations }: MobileHeaderProps) => {
           </Link>
 
           <div className='flex items-center gap-2'>
-            {/* Search icon */}
-            <button className='w-8 h-8 rounded-full border border-white/15 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-all duration-200 bg-white/6'>
-              <Icon
-                name='search'
-                className='w-4 h-4 text-white/70'
-                strokeWidth={2}
-              />
-            </button>
+            <MobileSearch />
 
             {/* Menu toggle */}
             <button
@@ -117,7 +113,7 @@ const MobileHeader = ({ categories, nations }: MobileHeaderProps) => {
           </div>
 
           {/* List */}
-          <div className='flex-1 overflow-y-auto px-4 py-2'>
+          <div className='flex-1 overflow-y-auto px-4 py-2 no-scrollbar'>
             <div className='grid grid-cols-2 gap-1'>
               {(activeSection === 'danh-sach'
                 ? DANH_SACH_ITEMS

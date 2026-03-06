@@ -129,11 +129,7 @@ export default async function DanhSachPage({
 
       {totalPages > 1 && (
         <Suspense fallback={null}>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            slug={slug}
-          />
+          <Pagination currentPage={currentPage} totalPages={totalPages} />
         </Suspense>
       )}
     </div>

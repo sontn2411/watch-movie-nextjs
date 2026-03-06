@@ -109,11 +109,7 @@ export default async function QuocGiaPage({
 
         {totalPages > 1 && (
           <Suspense fallback={null}>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              slug={`quoc-gia/${slug}`}
-            />
+            <Pagination currentPage={currentPage} totalPages={totalPages} />
           </Suspense>
         )}
       </div>

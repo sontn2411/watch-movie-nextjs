@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { episodeItem } from '@/types/movies'
 import Icon from '@/components/ui/Icon'
 import Link from 'next/link'
@@ -27,7 +27,7 @@ export default function EpisodeList({ episodes }: EpisodeListProps) {
       {/* Server Selection Header */}
       <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-4 sm:px-6 py-4 bg-white/5 border-b border-white/10'>
         <div className='flex items-center gap-4 w-full sm:w-auto'>
-          <div className='flex items-center gap-2 flex-shrink-0'>
+          <div className='flex items-center gap-2 shrink-0'>
             <div className='w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_10px_var(--primary)]' />
             <span className='text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-white/40'>
               Servers

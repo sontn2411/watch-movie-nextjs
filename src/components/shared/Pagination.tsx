@@ -1,13 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import Icon from '@/components/ui/Icon'
 
 interface PaginationProps {
   currentPage: number
   totalPages: number
-  slug: string
 }
 
 function getPageNumbers(current: number, total: number): (number | '...')[] {
@@ -41,15 +40,15 @@ const BTN_DISABLED =
 export default function Pagination({
   currentPage,
   totalPages,
-  slug,
 }: PaginationProps) {
   const pages = getPageNumbers(currentPage, totalPages)
   const searchParams = useSearchParams()
+  const pathname = usePathname()
 
   const getPageLink = (page: number) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set('page', String(page))
-    return `/danh-sach/${slug}?${params.toString()}`
+    return `${pathname}?${params.toString()}`
   }
 
   return (

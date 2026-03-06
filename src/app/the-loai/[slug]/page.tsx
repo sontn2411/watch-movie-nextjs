@@ -109,11 +109,7 @@ export default async function TheLoaiPage({
 
         {totalPages > 1 && (
           <Suspense fallback={null}>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              slug={`the-loai/${slug}`}
-            />
+            <Pagination currentPage={currentPage} totalPages={totalPages} />
           </Suspense>
         )}
       </div>

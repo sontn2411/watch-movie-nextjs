@@ -2,10 +2,11 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { ItemData } from '@/types/movies'
 import { SLUG_TITLES } from '@/services/movieService'
 import Icon from '@/components/ui/Icon'
+import DesktopSearch from './DesktopSearch'
 
 const DANH_SACH_ITEMS: ItemData[] = Object.entries(SLUG_TITLES).map(
   ([slug, name]) => ({
@@ -165,19 +166,7 @@ const DesktopHeader = ({ categories, nations }: DesktopHeaderProps) => {
 
           {/* Right actions */}
           <div className='flex items-center gap-3'>
-            {/* Search — glass pill */}
-            <div className='relative hidden sm:block'>
-              <input
-                type='text'
-                placeholder='Tìm phim...'
-                className='w-48 lg:w-64 py-1.5 pl-9 pr-4 text-sm text-white placeholder-white/40 rounded-full border border-white/15 outline-none focus:w-72 focus:border-white/30 transition-all duration-300 bg-white/[0.07] backdrop-blur-md'
-              />
-              <Icon
-                name='search'
-                className='absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/40 pointer-events-none'
-                strokeWidth={2}
-              />
-            </div>
+            <DesktopSearch />
 
             {/* Avatar button — glass circle */}
             <button className='w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:border-white/40 hover:bg-white/10 transition-all duration-200 cursor-pointer bg-white/[0.07] backdrop-blur-md'>
