@@ -1,18 +1,20 @@
 'use client'
-
 import { useState } from 'react'
 import { episodeItem } from '@/types/movies'
 import Icon from '@/components/ui/Icon'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 interface EpisodeListProps {
   episodes: episodeItem[]
   movieSlug: string
 }
 
-export default function EpisodeList({ episodes }: EpisodeListProps) {
+export default function EpisodeList({ episodes, movieSlug }: EpisodeListProps) {
   const [activeServer, setActiveServer] = useState(0)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+  const searchParams = useSearchParams()
+  const currentTap = searchParams.get('tap')
 
   const sortedEpisodes = [...episodes[activeServer].server_data].sort(
     (a, b) => {
@@ -74,23 +76,30 @@ export default function EpisodeList({ episodes }: EpisodeListProps) {
       {/* Episode Grid Content */}
       <div className='p-6 h-[30vh]  overflow-y-auto no-scrollbar'>
         <div className='flex flex-wrap gap-4'>
-          {sortedEpisodes.map((item, index) => (
-            <Link
-              key={item.name}
-              href={`/xem-phim/${item.slug}`}
-              className='group min-w-14 h-14 relative flex items-center justify-center px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 hover:scale-[1.03] active:scale-95'
-              style={{
-                animation: `fadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
-                animationDelay: `${index * 20}ms`,
-                opacity: 0,
-              }}
-            >
-              <div className='absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10' />
-              <span className='text-xs font-bold tracking-tight text-white/60 group-hover:text-white transition-colors'>
-                {item.name}
-              </span>
-            </Link>
-          ))}
+          {sortedEpisodes.map((item, index) => {
+            const isActive = currentTap === item.slug
+            return (
+              <Link
+                key={item.name}
+                href={`/xem-phim/${movieSlug}?tap=${item.slug}`}
+                className={`group min-w-14 h-14 relative flex items-center justify-center px-3 py-2 rounded-xl border transition-all duration-300 hover:scale-[1.03] active:scale-95 ${
+                  isActive
+                    ? 'bg-primary border-primary/40 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+                    : 'bg-white/5 border-white/5 hover:border-primary/40 hover:bg-primary/5 text-white/60 hover:text-white'
+                }`}
+                style={{
+                  animation: `fadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
+                  animationDelay: `${index * 20}ms`,
+                  opacity: 0,
+                }}
+              >
+                <div className='absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10' />
+                <span className='text-xs font-bold tracking-tight transition-colors'>
+                  {item.name}
+                </span>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </div>

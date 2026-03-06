@@ -15,7 +15,11 @@ export function useSearch(limit: number = 5) {
         setIsLoading(true)
         try {
           const res = await fetchSearchMovie(debouncedSearch, 1, limit)
-          setSearchResults(res.data.items || [])
+          if (res?.data?.items) {
+            setSearchResults(res.data.items)
+          } else {
+            setSearchResults([])
+          }
         } catch (error) {
           console.error('Search error:', error)
           setSearchResults([])
