@@ -13,14 +13,16 @@ export default async function Home() {
   const [homeData] = await Promise.all([fetchHomeData(), sleep(2000)])
 
   // Take top movies for the carousel
-  const carouselMovies = homeData.items
-  const cdnImage = homeData.pathImage
+  const carouselMovies = homeData?.items ?? []
+  const cdnImage = homeData?.pathImage ?? ''
 
   // Fetch all sections in parallel
   const sectionsData = await Promise.all(
     slugs.map(async (slug) => {
       try {
         const res = await fetchMoviesBySlug(slug)
+        if (!res?.data?.items) return { slug, items: [], cdnImage: '' }
+
         return {
           slug,
           items: res.data.items,

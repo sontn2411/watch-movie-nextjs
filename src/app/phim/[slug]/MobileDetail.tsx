@@ -14,14 +14,14 @@ import TrailerModal from '@/components/shared/TrailerModal'
 
 interface MobileDetailProps {
   detailRes: ResponseDataFilmDetail
-  imageRes: ResponseDataFilmImage
-  peopleRes: ResponseDataFilmPeoples
+  imageRes?: ResponseDataFilmImage
+  peopleRes?: ResponseDataFilmPeoples | null
   slug: string
 }
 
 export default function MobileDetail({
   detailRes,
-  imageRes,
+  // imageRes,
   peopleRes,
   slug,
 }: MobileDetailProps) {
@@ -32,7 +32,7 @@ export default function MobileDetail({
     return `${APP_DOMAIN_CDN_IMAGE}/uploads/movies/${path}`
   }
 
-  const images = imageRes?.data?.images || []
+  // const images = imageRes?.data?.images || []
   const peopleImages = peopleRes?.data?.peoples || []
 
   const {
@@ -51,8 +51,6 @@ export default function MobileDetail({
     content,
     episodes,
   } = item
-
-  console.log('======', item)
 
   return (
     <div className='relative min-h-screen bg-gray-950 text-white overflow-x-hidden'>

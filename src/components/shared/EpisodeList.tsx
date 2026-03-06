@@ -78,7 +78,7 @@ export default function EpisodeList({ episodes }: EpisodeListProps) {
             <Link
               key={item.name}
               href={`/xem-phim/${item.slug}`}
-              className='group w-14 h-14 relative flex items-center justify-center px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 hover:scale-[1.03] active:scale-95'
+              className='group min-w-14 h-14 relative flex items-center justify-center px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 hover:scale-[1.03] active:scale-95'
               style={{
                 animation: `fadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
                 animationDelay: `${index * 20}ms`,

@@ -48,10 +48,10 @@ export default async function MovieDetailPage({
   const isMobile = isMobileDevice(userAgent)
 
   // Parallel fetching with 2s artificial delay
-  const [[detailRes, imageRes, peopleRes]] = await Promise.all([
+  const [[detailRes, peopleRes]] = await Promise.all([
     Promise.all([
       fetchMovieDetailBySlug(slug),
-      fetchMovieDetailImage(slug),
+      // fetchMovieDetailImage(slug),
       fetchMovieDetailPeople(slug),
     ]),
     sleep(2000),
@@ -64,14 +64,14 @@ export default async function MovieDetailPage({
   return isMobile ? (
     <MobileDetail
       detailRes={detailRes}
-      imageRes={imageRes}
+      // imageRes={imageRes}
       peopleRes={peopleRes}
       slug={slug}
     />
   ) : (
     <MovieDetailDesktop
       detailRes={detailRes}
-      imageRes={imageRes}
+      // imageRes={imageRes}
       peopleRes={peopleRes}
       slug={slug}
     />

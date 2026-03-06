@@ -53,10 +53,18 @@ const ALLOWED_NATIONS = [
 // Shared revalidation config
 const CACHE_1H = { next: { revalidate: 3600 } }
 
-const fetchJson = async <T>(url: string): Promise<T> => {
-  const res = await fetch(url, CACHE_1H)
-  if (!res.ok) throw new Error(`Fetch failed: ${url} (${res.status})`)
-  return res.json()
+const fetchJson = async <T>(url: string): Promise<T | null> => {
+  try {
+    const res = await fetch(url, CACHE_1H)
+    if (!res.ok) {
+      console.error(`Fetch failed: ${url} (${res.status})`)
+      return null
+    }
+    return res.json()
+  } catch (error) {
+    console.error(`Fetch error: ${url}`, error)
+    return null
+  }
 }
 
 const fetchHomeData = () =>
