@@ -28,7 +28,7 @@ export default function WatchEpisodeList({
   )
 
   return (
-    <div className='flex flex-col gap-6 h-full'>
+    <div className='flex flex-col gap-6'>
       {/* Server Selection Segmented Control */}
       {episodes.length > 0 && (
         <div className='sticky top-0 z-10 bg-[#05050A]/90 backdrop-blur-md pb-4 pt-2 -mx-2 px-2'>

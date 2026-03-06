@@ -241,7 +241,7 @@ export default function VideoPlayer({
 
       {/* Controls Overlay */}
       <div
-        className={`absolute inset-x-0 bottom-0 px-4 pb-4 pt-24 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20 transition-opacity duration-300 flex flex-col justify-end ${
+        className={`absolute inset-x-0 bottom-0 px-4 pb-4 pt-24 bg-linear-to-t from-black/90 via-black/40 to-transparent z-20 transition-opacity duration-300 flex flex-col justify-end ${
           isHovering ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >

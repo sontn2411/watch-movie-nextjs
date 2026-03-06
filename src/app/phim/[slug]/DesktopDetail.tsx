@@ -53,7 +53,7 @@ export default function MovieDetailDesktop({
   } = item
 
   return (
-    <div className='relative min-h-screen bg-gray-950 text-white'>
+    <div className='relative h-[80vh] bg-gray-950 text-white'>
       <div className='h-screen relative overflow-hidden'>
         {/* Background Layer */}
 
